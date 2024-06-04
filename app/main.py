@@ -1,9 +1,9 @@
 ##importando biblioteca e funções
-from app.db_access import db_connection
-from app.db_access import createTable
-from app.db_access import insertTable
-from app.data_processing import data_processor
-from app.data_processing import function
+from db_access import db_connection
+from db_access import createTable
+from db_access import insertTable
+from data_processing import data_processor
+from data_processing import function
 from warnings import filterwarnings
 
 

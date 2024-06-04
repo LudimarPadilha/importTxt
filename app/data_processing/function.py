@@ -2,7 +2,7 @@
 import pandas as pd
 import pandas.io.sql as psql
 import re
-from src.db_access import db_connection
+from db_access import db_connection
 
 #Consultado tabelas do PostGres
 def consulta_banco(sql, conexao):  

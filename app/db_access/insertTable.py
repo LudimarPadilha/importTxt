@@ -1,4 +1,4 @@
-from src.db_access import db_connection
+from db_access import db_connection
 
 def insert_Table(dados):
     transition = db_connection.transition('postGre')
