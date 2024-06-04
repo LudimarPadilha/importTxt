@@ -23,7 +23,8 @@ services:
       retries: 3
 
   app:
-    build: .
+    build:
+      context: .
     depends_on:
       - db
     environment:
