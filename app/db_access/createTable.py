@@ -1,5 +1,5 @@
 #importando funções
-from src.db_access import db_connection
+from app.db_access import db_connection
 #from src.data_processing import data_processor
 
 

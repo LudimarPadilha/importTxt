@@ -31,7 +31,7 @@ def transition(server):
     #Realizando conexão com o banco de dados
     try:
         connection_base = psy.connect(
-                            database = 'dbclientes',
+                            database = 'db_clientes',
                             user = 'postgres',
                             password='123456',
                             host ='localhost',

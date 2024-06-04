@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copie o arquivo de requisitos para o diretório de trabalho
 COPY requirements.txt .
+COPY . /app
 
 # Instale as dependências do Python
 RUN pip install --no-cache-dir -r requirements.txt
@@ -14,4 +15,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Defina o comando padrão para ser executado quando o contêiner iniciar
-CMD ["python", "main.py"]
+CMD ["python", "app/main.py"]

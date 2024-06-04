@@ -10,17 +10,18 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./app/sql/estrutura.sql:/docker-entrypoint-initdb.d/estrutura.sql
+      - processo_postgres_data:/var/lib/postgresql/data
 
   app:
     build: .
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://user:password@db:5432/db_clientes
+      DATABASE_URL: postgres://user:password@db:5432/postgres
     volumes:
-      - .:/app
-    command: python main.py
+      - .app:/app
+    command: python app/main.py
 
 volumes:
-  postgres_data:
+  processo_postgres_data:
