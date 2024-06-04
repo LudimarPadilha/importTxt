@@ -10,22 +10,23 @@ def connection_postgres():
         result = urlparse(database_url)
 
         connection = psy.connect(
-                        host ='localhost',
+                        host ='db',
                         port = 5432,
                         user = 'postgres',
                         password='123456' 
                         )
+
         print("Conexão com PostGreSQL estabelecida com sucesso! \n")
+
+        transition_postGres = connection.cursor()
+        connection.autocommit = True
+
+        transition_postGres.execute('DROP DATABASE if exists dbclientes;')
+        transition_postGres.execute('CREATE DATABASE dbclientes;')
+
+        return connection
     except psy.Error as e:
         print(f"Falha ao conectar a PostGres: {e}")
-
-    transition_postGres = connection.cursor()
-    connection.autocommit = True
-
-    transition_postGres.execute('DROP DATABASE if exists dbclientes;')
-    transition_postGres.execute('CREATE DATABASE dbclientes;')
-    return connection
-    
 
 def transition(server):
     #Realizando conexão com o banco de dados
@@ -34,7 +35,7 @@ def transition(server):
                             database = 'db_clientes',
                             user = 'postgres',
                             password='123456',
-                            host ='localhost',
+                            host ='db',
                             port = 5432
                             )
         connection_base.autocommit = True 
