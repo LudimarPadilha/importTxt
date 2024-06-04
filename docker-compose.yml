@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
@@ -12,6 +12,15 @@ services:
     volumes:
       - ./app/sql/estrutura.sql:/docker-entrypoint-initdb.d/estrutura.sql
       - processo_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "sh -c 'pg_isready --username=postgres --dbname=db_clientes'",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
 
   app:
     build: .
@@ -20,8 +29,12 @@ services:
     environment:
       DATABASE_URL: postgres://user:password@db:5432/postgres
     volumes:
-      - .app:/app
+      - ./app:/app/app
     command: python app/main.py
 
 volumes:
   processo_postgres_data:
+
+networks:
+  default:
+    driver: bridge
