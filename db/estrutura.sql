@@ -18,7 +18,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---DROP DATABASE IF EXISTS db_clientes;
+DROP DATABASE IF EXISTS db_clientes;
 --
 -- TOC entry 4783 (class 1262 OID 17600)
 -- Name: db_clientes; Type: DATABASE; Schema: -; Owner: postgres

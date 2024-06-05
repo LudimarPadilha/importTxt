@@ -1,8 +1,13 @@
-from src.db_access import db_connection
+from db_access import db_connection
+
 
 def insert_Table(dados):
-    transition = db_connection.transition('postGre')
+    conexao = db_connection.consultar()
+    updados = conexao.cursor()
 
+    #contagem dos registros
+    registrosinseridos = []
+    
     #Responsavel pela estrutura do insert!
     conteudo = """
     INSERT INTO clientes_temp(
@@ -16,16 +21,18 @@ def insert_Table(dados):
             LOJA_DA_ULTIMA_COMPRA
         )
         VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
-        """
-    #transition.executemany(conteudo,dados)
-    #for f in range(0, len(dados), 2000):
-    # dadosF = dados[f:f+20000]
-    # transition.executemany(conteudo,dadosF)
+        RETURNING id
+        """    
     for f in dados:
      #Estamos tratando os caracteres 'NULL' para NULL.
      dadosF = [None if elemento  == 'NULL' else elemento  for elemento  in f]
-     #dadosF = (f[5] == 'pandas' and connection_base or connection_base.cursor())
 
-     #dadosF = ["" if elemento  == "'" else elemento  for elemento  in f[5]]
-     ##metodo responsavel por enviar os dados.
-     transition.execute(conteudo,(dadosF))
+     #Metodo responsavel por enviar os dados.
+     updados.execute(conteudo,(dadosF))
+
+     # Salvando commit referenteas inserções.
+     conexao.commit()
+     
+     # Verificando quantos registros foram inseridos.     
+     registrosinseridos.append((updados.fetchall()))
+    return len(registrosinseridos)
