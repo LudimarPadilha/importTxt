@@ -19,8 +19,6 @@ services:
       DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
     volumes:
       - ./app:/app
-      - ./db:/app/sql
-      - ./Base.txt:/app/Base.txt
     working_dir: /app
     command: >
       bash -c "pip3 install --no-cache-dir -r requirements.txt && python main.py"

@@ -4,10 +4,11 @@ from pathlib import Path
 from db_access import db_connection
 
 #função responsavel por atualizar os dados.  
-def executasql(conexao):
+def executasql():
+  conexao = db_connection.consultar()
   #fazendo a leitura do arquivo SQL. 
   registrosinseridos = [] 
-  arquivo = "./sql/limpezadados"
+  arquivo = "./sql"
   sql_arquivos = glob.glob(f"{arquivo}/*.sql")
   for file_path in sql_arquivos:
       with open(file_path, "r") as sql_arquivos:

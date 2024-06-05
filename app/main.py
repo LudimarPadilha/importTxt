@@ -16,4 +16,4 @@ print("Iniciando a inserção de dados na tabela clientes_temp!! \n")
 print("Foram inseridos", insertTable.insert_Table(leituraBase),"registros na tabela clientes_temp! \n")
 
 print("Iniciando a higienização de dados na tabela clientes_temp!! \n")
-print("Foram alterados", updateTable.executasql(leituraBase),"registros na tabela clientes_temp! \n")
+print("Foram alterados", updateTable.executasql(),"registros na tabela clientes_temp! \n")
