@@ -23,12 +23,13 @@ def insert_Table(dados):
         VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
         RETURNING id
         """    
-    for f in dados:
+    #for f in dados:
+    for index, f in dados.iterrows():
      #Estamos tratando os caracteres 'NULL' para NULL.
-     dadosF = [None if elemento  == 'NULL' else elemento  for elemento  in f]
+     #dadosF = [None if elemento  == 'NULL' else elemento  for elemento  in f]
 
      #Metodo responsavel por enviar os dados.
-     updados.execute(conteudo,(dadosF))
+     updados.execute(conteudo,f)
 
      # Salvando commit referenteas inserções.
      conexao.commit()

@@ -1,30 +1,19 @@
 #importando as bibliotecas
+import glob
+from pathlib import Path
 from db_access import db_connection
-
 
 #função responsavel por atualizar os dados.  
 def executasql(conexao):
-  #fazendo a leitura do arquivo SQL.
-  with open('.sql/limpezadados.sql') as arqsql:
-    comandos = arqsql.read()
-    
-  #declarando lista vazia.  
-  registrosinseridos = []
-  conexao = db_connection.consultar()
-  with conexao.cursor() as cursor:
-   for comandos in comandos.split(';'):
-       comandos = comandos.strip()
-       if comandos:
-          #concatenando os camandos do update com returning
-          envioupdate = comandos +" RETURNING *"
-
-          #metodo responsavel por alterar os dados.
-          cursor.execute(envioupdate)
-
-          #salvando commit referente as alterações.
+  #fazendo a leitura do arquivo SQL. 
+  registrosinseridos = [] 
+  arquivo = "./sql/limpezadados"
+  sql_arquivos = glob.glob(f"{arquivo}/*.sql")
+  for file_path in sql_arquivos:
+      with open(file_path, "r") as sql_arquivos:
+          commands = sql_arquivos.read()
+          cur = conexao.cursor()
+          cur.execute(commands)
           conexao.commit()
-        
-          #verificando quantos registros foram alterados.      
-          registrosinseridos.append((cursor.fetchall()))
-       return len(registrosinseridos)
-   
+          registrosinseridos.append((cur.fetchall()))
+      return len(registrosinseridos)
