@@ -63,6 +63,7 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
 **.docker-compose.yml** Responsavel por construir e iniciar os contêineres
 
 ### Estrutura do Banco de Dados
+
   ```
   CREATE TABLE public.clientes_temp (
       id integer NOT NULL,
@@ -76,8 +77,9 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
       loja_da_ultima_compra character varying(18)
   );
   ```
-    ## Alterações e Inclusões
-    ```
+  ## Alterações e Inclusões
+  
+
     CREATE TABLE public.clientes_temp (
         id integer NOT NULL,
         cpf character varying(18),
@@ -89,11 +91,10 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
         loja_mais_frequente character varying(18),
         loja_da_ultima_compra character varying(18)
     );
-    ```
+
   
-    ## Campo sequencial (Auto Incremental)
-    
-    ```
+   ## Campo sequencial (Auto Incremental)
+
       ALTER TABLE public.clientes_temp ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
           SEQUENCE NAME public.clientes_temp_id_seq
           START WITH 1
@@ -102,8 +103,9 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
           NO MAXVALUE
           CACHE 1
       );
-    ```
-     Alteração reealizado para gerar automaticamente o valor da coluna id da tabela clientes_temp.
+    
+
+Alteração reealizado para gerar automaticamente o valor da coluna id da tabela clientes_temp.
   
 
   ### Arquitetura
@@ -122,14 +124,13 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
    ### Testes Automatizados
    Para garatir a execução e qualidade do código e a correção dos dados que podem ser processados de acordo com as especificações, testes automatizados foram implementados.
 
-    #### Execução dos Testes
-    Os testes foram programados para executar automaticamente antes do processamento principal do projeto. Eles são localizados no diretorio ***tests*** e utilizam framework ***unittest***.
+   #### Execução dos Testes
+   Os testes foram programados para executar automaticamente antes do processamento principal do projeto. Eles são localizados no diretorio ***tests*** e utilizam framework ***unittest***.
 
-    Para executar o teste manualmente, basta executar o comando no seu terminar:
+   Para executar o teste manualmente, basta executar o comando no seu terminar:
 
-      ```shell
+
       python -m unittest discover -s tests
-      ```
 
     
 
