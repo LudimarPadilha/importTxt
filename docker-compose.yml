@@ -10,15 +10,21 @@ services:
       - "5432:5432"
     volumes:
       - ./db/estrutura.sql:/docker-entrypoint-initdb.d/estrutura.sql
+    networks:
+      - local-network
 
   app:
     image: python:3.9-slim
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
     volumes:
       - ./app:/app
+    networks:
+      - local-network
     working_dir: /app
     command: >
       bash -c "pip3 install --no-cache-dir -r requirements.txt && python main.py"
+
+networks: 
+  local-network:
+    driver: bridge

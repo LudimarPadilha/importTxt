@@ -39,6 +39,7 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
   │   └── sql
   │   └── main.py
   ├── db
+  ├── tests
   ├── README.md
   └── docker-compose.yml
  ```
@@ -54,6 +55,8 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
    **-  main.py** Arquivo responsavel por starta o projeto.
    
 **.db** Nesse diretorio contem um arquivo com a estrutura do banco de dados.
+
+**.tests** Nesse diretorio contem os arquivos que faram os testes automatizadoss.
 
 **.README.md** Arquivo responsavel por instruções.
 
@@ -106,7 +109,7 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
   ### Arquitetura
   A arquitetura do projeto segue uma abordagem de microserviços utilizando contêineres Docker. Cada Serviço da aplicação é isolado em um contêiner separado, permitindo escalabilidade e facilidade de manutenção.
   
-   #### Compooentes principais.
+   #### Componentes principais
  - **Aplicação Web (app):** Está é a parte principal da aplicação, contendo todo o código relacionado ao projeto.
  - **Banco de Dados (db):** Este diretório contém a configuração e os scripts necessários para o banco de dados. O Banco de dados é executado em um contêiner separado, garantindo isolamento e independência
  - **Docker-compose:** Arquivo responsavel por definir os serviços, redes e volumes necessários para a aplicação. Isso inclui definições para a aplicação web e o banco de dados.
@@ -115,5 +118,19 @@ Antes de iniciar a instalação, certifique-se de que você tem os seguintes req
   - **Isolamento com Docker:** Utilizando a ferramenta Docker, cada componente da aplicação é executado em um ambiente isolado, o que facilita o desenvolvimento, testes e implantação.
   - **Facilidade com Docker-compose:** Executando apenas o comando ***docker-compose up***, todos os serviços necessários são iniciados, praticamente um processo de setup.
   - **Portabilidade:** A utilização de contêineres Docker torna a aplicação portátil, permitindo que ela seja executado em qualquer ambiente que suporte Docker.
+
+   ### Testes Automatizados
+   Para garatir a execução e qualidade do código e a correção dos dados que podem ser processados de acordo com as especificações, testes automatizados foram implementados.
+
+    #### Execução dos Testes
+    Os testes foram programados para executar automaticamente antes do processamento principal do projeto. Eles são localizados no diretorio ***tests*** e utilizam framework ***unittest***.
+
+    Para executar o teste manualmente, basta executar o comando no seu terminar:
+
+      ```shell
+      python -m unittest discover -s tests
+      ```
+
+    
 
 ## FIM  

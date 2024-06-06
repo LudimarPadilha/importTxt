@@ -25,8 +25,6 @@ def insert_Table(dados):
         """    
     #for f in dados:
     for index, f in dados.iterrows():
-     #Estamos tratando os caracteres 'NULL' para NULL.
-     #dadosF = [None if elemento  == 'NULL' else elemento  for elemento  in f]
 
      #Metodo responsavel por enviar os dados.
      updados.execute(conteudo,f)
